@@ -162,7 +162,7 @@ int main(int argc, const char * argv[]) {
 
 
     //use pointers
-    // a pinter of base class can point to an object of a derived class.
+    // a pointer of base class can point to an object of a derived class.
     YoutubeChannel * youtube1 = &AmySingingChannel;
     YoutubeChannel * youtube2 = &FoodOnthePlate;
     
@@ -171,19 +171,5 @@ int main(int argc, const char * argv[]) {
     youtube2->checkanalystics();
 
     
-
-
-    
-    
-    
-
-    
-    
-
-    
-    
-
-
-
     return 0;
 }
