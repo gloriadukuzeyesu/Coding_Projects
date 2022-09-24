@@ -21,8 +21,9 @@ private:
     int Subscriberscount;
     list<string> PublixhedVideoTitle;
 
-protected:
-    string OwnerName; // this protected member variable can be accessed by both the base and derived classes
+protected: // this protected member variable can be accessed by both the base and derived classes
+    string OwnerName;
+    int counterQuality;
 public:
     //constructor
     YoutubeChannel (string Name_, string OwnerName_){
@@ -30,7 +31,6 @@ public:
         this->OwnerName = OwnerName_;
         this->Subscriberscount = 0;
     }
-    
     //methods
     void getInfor(){
         cout << "Name: " << Name << endl;
@@ -58,6 +58,14 @@ public:
         Name = setName;
         return Name;
     }
+    void checkanalystics(){
+        if(counterQuality < 5){
+            cout<< Name << " has poor quality content " << endl;
+        }
+        else{
+            cout << Name << "  has great quality content" << endl;
+        }
+    }
 };
 
 //inheritance. Class CookingYoutubeChannel will inherit properties of YoutubeChannel
@@ -71,8 +79,20 @@ public:
     //methods for just CookingYoutubeChannel. Derived class
     void Practice(){
         cout<<OwnerName<<": Practicing cooking and trying out new recipes..." <<endl;
+        counterQuality++;
     }
-    
+};
+
+class SingersYoutubeChannel : public YoutubeChannel{
+public:
+    //constructor
+    SingersYoutubeChannel(string Name_, string OwnerName_) : YoutubeChannel (Name_, OwnerName_){
+    }
+    //methods
+    void Practice(){
+        cout << OwnerName << " Practicing singing and dancing new moves. " << endl;
+        counterQuality++;
+    }
 };
 
 
@@ -128,6 +148,37 @@ int main(int argc, const char * argv[]) {
     FoodOnthePlate2.setter("mrsWillsonCooking");
 //    cout << FoodOnthePlate2.get() <<endl;
     FoodOnthePlate2.getInfor();
+    
+    cout <<"************** Polymorphisam ********************" << endl;
+    SingersYoutubeChannel AmySingingChannel ("AmySingingChannel", "Amy Harrison");
+    AmySingingChannel.Practice();
+    FoodOnthePlate.Practice();
+    FoodOnthePlate.Practice();
+    FoodOnthePlate.Practice();
+    FoodOnthePlate.Practice();
+    FoodOnthePlate.Practice();
+    FoodOnthePlate.Practice();
+    FoodOnthePlate.Practice();
+
+
+    //use pointers
+    // a pinter of base class can point to an object of a derived class.
+    YoutubeChannel * youtube1 = &AmySingingChannel;
+    YoutubeChannel * youtube2 = &FoodOnthePlate;
+    
+    //invoke the methods on this pointers
+    youtube1->checkanalystics();
+    youtube2->checkanalystics();
+
+    
+
+
+    
+    
+    
+
+    
+    
 
     
     
